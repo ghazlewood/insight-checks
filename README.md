@@ -14,6 +14,8 @@ Taking that list and running some AHT commands can show if a standard environmen
  - force cli installed locally (Download from https://force-cli.heroku.com)
    place in ~/bin/ or somewhere in your path
 
+## Firefox
+When logging into Salesforce via the 'force' command Firefox may block the request with a "Blocked loading mixed active content" error and a blank page.  To stop this from happening click the shield icon in the address bar and choose Disable Protection on This Page from the dropdown menu.
 
 ## Future Enhancements
 

@@ -24,7 +24,7 @@ if [[ $(isControlMasterActive) -eq 0 ]]; then
   # Check we have an active salesforce login available
   if [ ! -z $(force active) ]; then
 
-    sfDocroots=$(./force query select Name From Onboarding__c Where \(Insight_Connector__c = \'No\' OR Insight_Connector__c = null\) AND \(Onboarding_Stage__c NOT IN \(\'Complete\', \'Complete-Survey\',\'On Hold\',\'Closed\' \)\) ORDER BY Name ASC --format:csv)
+    sfDocroots=$(force query select Name From Onboarding__c Where \(Insight_Connector__c = \'No\' OR Insight_Connector__c = null\) AND \(Onboarding_Stage__c NOT IN \(\'Complete\', \'Complete-Survey\',\'On Hold\',\'Closed\' \)\) ORDER BY Name ASC --format:csv)
     # Make an array of results
     sfDocrootsArray=( $sfDocroots )
     # Remove the header row
@@ -83,7 +83,7 @@ if [[ $(isControlMasterActive) -eq 0 ]]; then
       done
     fi
   else
-    echo "Please login to Salesforce with './force login' first"
+    echo "Please login to Salesforce with 'force login' first"
   fi
 else
   echo 'Bastion not connected';
