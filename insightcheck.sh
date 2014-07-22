@@ -6,8 +6,10 @@
 #
 # Before running this script you will need to login to Bastion and Saleforce 
 # Login to Salesforce with
-# ./force login
-# this will redirect to a browser and ask you to allow the force cli to use your account
+#
+# force login
+# 
+# this will redirect to a browser and ask you to allow the force cli to use your Salesforce account
 
 . ~/.ah_profile
 
@@ -20,7 +22,7 @@ function isControlMasterActive
 if [[ $(isControlMasterActive) -eq 0 ]]; then
 
   # Check we have an active salesforce login available
-  if [ ! -z $(./force active) ]; then
+  if [ ! -z $(force active) ]; then
 
     sfDocroots=$(./force query select Name From Onboarding__c Where \(Insight_Connector__c = \'No\' OR Insight_Connector__c = null\) AND \(Onboarding_Stage__c NOT IN \(\'Complete\', \'Complete-Survey\',\'On Hold\',\'Closed\' \)\) ORDER BY Name ASC --format:csv)
     # Make an array of results
@@ -29,7 +31,7 @@ if [[ $(isControlMasterActive) -eq 0 ]]; then
     sfDocrootsArray=("${sfDocrootsArray[@]:1}")
 
     # Test docroots (enabled, not installed, not enabled or installed)
-    sfDocrootsArray=('sarepta' 'uafs' 'isover');
+    #sfDocrootsArray=('sarepta' 'uafs' 'isover');
     if [ ${#sfDocrootsArray[@]} -eq 0 ]; then
       echo "No docroots found"
     else
