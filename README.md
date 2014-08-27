@@ -14,6 +14,22 @@ Taking that list and running some AHT commands can show if a standard environmen
  - force cli installed locally (Download from https://force-cli.heroku.com)
    place in ~/bin/ or somewhere in your path
 
+## Installation
+git clone 
+
+## Usage
+
+1) Login to Salesforce with the CLI
+```
+$ force login
+```
+This will open a browser tab and ask you to authorise the Force CLI to use your Salesforce login.  Once you reach the Authorisation Complete page you can close the tab.
+
+2) Run the script
+```
+$ insight-check.sh
+```
+
 ## Firefox
 When logging into Salesforce via the 'force' command Firefox may block the request with a "Blocked loading mixed active content" error and a blank page.  To stop this from happening click the shield icon in the address bar and choose Disable Protection on This Page from the dropdown menu.
 
