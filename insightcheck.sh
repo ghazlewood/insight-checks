@@ -24,7 +24,7 @@ if [[ $(isControlMasterActive) -eq 0 ]]; then
   # Check we have an active salesforce login available
   if [ ! -z $(force active) ]; then
 
-    sfDocroots=$(force query select Name From Onboarding__c Where \(Insight_Connector__c = \'No\' OR Insight_Connector__c = null\) AND \(Onboarding_Stage__c NOT IN \(\'Complete\', \'Complete-Survey\',\'On Hold\',\'Closed\' \)\) ORDER BY Name ASC --format:csv)
+    sfDocroots=$(force query select Name From Onboarding__c Where \(Insight_Connector__c = \'No\' OR Insight_Connector__c = null\) AND \(Onboarding_Stage__c NOT IN \(\'Complete\', \'Complete-Survey\',\'On Hold\',\'Closed\' \)\) AND \(Onboarding_Type__c IN \(\'Basic\', \'Concierge\',\'TAM\'\)\) ORDER BY Name ASC --format:csv)
     # Make an array of results
     sfDocrootsArray=( $sfDocroots )
     # Remove the header row
@@ -36,6 +36,9 @@ if [[ $(isControlMasterActive) -eq 0 ]]; then
       echo "No docroots found"
     else
       for docroot in ${sfDocrootsArray[@]}; do
+        # if comma separated also explode
+        # todo (if contains comma, explode into parts and add back into)
+        # 
         # make sure docroot is lower
         docroot=$(echo $docroot | tr '[:upper:]' '[:lower:]')
         # trim double quotes
